@@ -1,0 +1,21 @@
+seed: 42
+camera:
+  distance_m: [0.35, 0.75]
+  focal_length_mm: [24, 55]
+  pitch_deg: [-12, 12]
+  yaw_deg: [-18, 18]
+lighting:
+  intensity_lm: [800, 4500]
+  color_temperature_k: [3500, 6500]
+materials:
+  roughness: [0.15, 0.75]
+  albedo_scale: [0.75, 1.20]
+defects:
+  types: [dent, scratch]
+  count: [0, 4]
+  scale_mm: [1.0, 18.0]
+  rotation_deg: [0, 360]
+  severity: [0.15, 1.0]
+outputs:
+  annotators: [rgb, bounding_box_2d_tight, semantic_segmentation]
+  format: coco
