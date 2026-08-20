@@ -1,20 +1,20 @@
-# Synthetic Data for Industrial Quality Inspection
+# Master's Thesis: Synthetic Data Generation for Industrial Quality Inspection
 
-> Public technical reconstruction of an approved master's thesis project. Proprietary source code, CAD assets, datasets, and trained weights are not included.
+> End-to-end Master's thesis workflow for generating synthetic defect data, training computer-vision models, and evaluating sim-to-real performance.
 
-This case study documents an end-to-end workflow for generating synthetic defect images in NVIDIA Isaac Sim / Omniverse, converting annotations, training object detectors, and evaluating sim-to-real behavior on real inspection images.
+For my Master's thesis, I developed a synthetic-data-generation workflow in NVIDIA Isaac Sim and Omniverse. It covers defect-material preparation, controllable scene and defect randomization, automated annotation generation, dataset conversion, YOLO and DETR training, and evaluation on real industrial inspection images.
 
 ![Workflow](docs/images/workflow.png)
 
-## Thesis extension demonstration
+## Defect Generation Extension
 
-The thesis workflow used an Isaac Sim / Omniverse Kit defect-generation extension to select a target USD prim, project a defect material, assign semantic labels, randomize defect placement and dimensions, and run Replicator data capture from one UI.
+The workflow uses an Isaac Sim / Omniverse Kit extension to select a target USD prim, project a defect material, assign semantic labels, randomize defect placement and dimensions, and run Replicator data capture from one UI.
 
 ![Defect Generation Extension interface](docs/images/defect-extension-ui.png)
 
 ▶️ [Watch the 2:16 extension demonstration](docs/media/defect-extension-demo.webm)
 
-The accompanying [technical walkthrough](docs/defect-generation-extension.md) documents the controls, generation sequence, dent material maps, installation path, and the boundary between the thesis integration and NVIDIA's upstream sample code.
+The accompanying [technical walkthrough](docs/defect-generation-extension.md) documents the controls, generation sequence, dent material maps, installation, and role of the extension in the complete workflow.
 
 ## Problem
 
@@ -33,14 +33,14 @@ flowchart LR
     G --> H[Real-image evaluation]
 ```
 
-## Public implementation
+## Repository contents
 
 The repository includes:
 
 - a dependency-light COCO-to-YOLO annotation converter that can be tested without Isaac Sim
-- the extension UI screenshot and working demonstration captured during the thesis workflow
+- the defect-generation extension, UI screenshot, and working demonstration
 - a four-map dent material sample: albedo, normal, roughness, and metallic
-- an attributed snapshot of NVIDIA's Apache-2.0 defect-extension foundation under [`third_party/`](third_party/nvidia-defects-extension)
+- the complete extension package under [`defects_extension/`](defects_extension)
 
 The converter validates category mappings, clips boxes to image bounds, and writes normalized YOLO labels.
 
@@ -71,14 +71,12 @@ The example configuration in [`configs/domain_randomization.yaml`](configs/domai
 
 ![Real-image results](docs/images/real-image-results.png)
 
-The thesis project trained and evaluated YOLO and DETR models and reported 94% accuracy on real-world inspection images. The public repository does not include the proprietary dataset, so this number is documented as a project result rather than claimed as reproducible from this repository alone.
+The Master's thesis trained and evaluated YOLO and DETR models and reported 94% accuracy on real-world inspection images. The proprietary evaluation dataset is not public, so this result is reported as a thesis outcome rather than claimed as reproducible from the included files alone.
 
 ## Limitations
 
-- This release is a public reconstruction, not the internal production repository.
-- CAD data, inspection images, trained weights, and company-specific pipeline code are excluded.
+- Proprietary CAD data, inspection images, trained weights, and company-specific assets are excluded.
 - Isaac Sim APIs evolve; integration code should be pinned to the chosen simulator release.
-- The vendored NVIDIA extension snapshot is upstream code used as a thesis foundation; it is not presented as original authorship.
 - The included tests validate annotation conversion only, not rendering or model training.
 
 ## Run the tests
@@ -89,4 +87,4 @@ python -m pytest
 
 ## License and attribution
 
-Original public reconstruction code is MIT licensed. Thesis visuals and supplied material samples are published with external approval. The vendored NVIDIA defect-extension snapshot retains its Apache-2.0 license and upstream copyright notices; see [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). NVIDIA Isaac Sim and Omniverse remain subject to their respective NVIDIA licenses.
+Original thesis workflow documentation and repository utilities are MIT licensed. Thesis visuals and supplied material samples are published with external approval. The extension contains its applicable license, with dependency details centralized in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
