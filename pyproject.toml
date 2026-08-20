@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "synthetic-inspection"
 version = "0.1.0"
-description = "Public utilities accompanying an Isaac Sim synthetic inspection case study"
+description = "Utilities accompanying a Master's thesis on Isaac Sim synthetic data generation for industrial inspection"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 

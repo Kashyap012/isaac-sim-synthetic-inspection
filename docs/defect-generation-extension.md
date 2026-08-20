@@ -1,6 +1,6 @@
 # Defect Generation Extension
 
-## Role in the thesis workflow
+## Role in the Master's thesis
 
 This extension provided a single control surface for applying projected defects to a selected OpenUSD prim and configuring NVIDIA Replicator output. It connected material-based defect authoring with repeatable synthetic-data capture for industrial visual-inspection experiments.
 
@@ -31,21 +31,19 @@ The supplied dent is represented by four physically based rendering maps belongi
 | --- | --- | --- | --- |
 | ![Dent albedo map](../assets/dent-defect/dent_0_D.png) | ![Dent normal map](../assets/dent-defect/dent_0_N.png) | ![Dent roughness map](../assets/dent-defect/dent_0_R.png) | ![Dent metallic map](../assets/dent-defect/dent_0_M.png) |
 
-The upstream extension snapshot sequences diffuse, normal, and roughness files using the `_D`, `_N`, and `_R` suffixes. The metallic map is retained as part of the supplied PBR material set, but the upstream projection-material call does not consume `_M` without an additional implementation change.
+The extension sequences diffuse, normal, and roughness files using the `_D`, `_N`, and `_R` suffixes. The metallic map is retained as part of the supplied PBR material set, but the current projection-material call does not consume `_M` without an additional implementation change.
 
 ## Installation
 
 1. Open the Extension Manager in the compatible Isaac Sim or Omniverse Kit application.
-2. Add `third_party/nvidia-defects-extension/exts` as an extension search path.
+2. Add `defects_extension/exts` as an extension search path.
 3. Enable the `omni.example.defects` extension.
 4. Select a target prim, copy its path in the extension, and apply the projection setup.
 5. Choose a compatible defect texture folder and output directory.
 6. Configure randomization ranges and annotations, then preview or run the requested frame count.
 
-The upstream documentation reports testing with Omniverse Code 2022.3.3 or later. Isaac Sim and Replicator APIs evolve, so this historical thesis artifact is provided as evidence and may require migration for current releases.
+The extension documentation reports testing with Omniverse Code 2022.3.3 or later. Isaac Sim and Replicator APIs evolve, so migration may be required for current releases.
 
-## Authorship and attribution
+## Master's thesis contribution
 
-The thesis contribution documented here is the industrial inspection workflow: integration in the thesis scene, defect-material use and preparation, parameterization, operation, data generation, and downstream computer-vision evaluation.
-
-The extension framework included in [`third_party/nvidia-defects-extension`](../third_party/nvidia-defects-extension) is a verbatim source snapshot of NVIDIA Omniverse's `kit-extension-sample-defectsgen` at commit `063b5b2`. It is preserved under Apache License 2.0 and is not claimed as original source code.
+The developed workflow connects the extension with the thesis scene, defect-material preparation, synthetic-data parameterization, automated generation, annotation handling, model training, and downstream evaluation on real inspection images.
